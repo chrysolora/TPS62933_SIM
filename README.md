@@ -23,9 +23,15 @@ TI **TPS62933**（24V → 12V，最大 3A）降压电路的仿真成品结果，
 | # | 结果 | 目录 | 状态 | 可信度 |
 |---|---|---|---|---|
 | 01 | 时域瞬态（纹波/开关/效率） | `results/01-stage1-transient/` | ✅ 交付 | ⚠️ **工程近似** |
-| 02 | 频域传导 EMI（DM, CISPR 32 近似）+ 软启动 | `results/02-conducted-emi/` | ✅ 交付 | ⚠️ **理想化、偏乐观** |
-| 03 | 电感下铺铜涡流场（FEA） | `results/03-field-eddy-copper/` | ⚠️ 链路验证 | ⚠️ **局部简化几何** |
+| 02 | 频域传导 EMI（DM, CISPR 32 近似）+ 软启动 | `results/02-conducted-emi/` | ✅ **v2 定稿** | ⚠️ 含寄生后**贴限值**（见下） |
+| 02b | DM 敏感性 + 无 π 滤波对比 | `results/02-conducted-emi/` | ✅ v2 | ⚠️ 趋势可信 |
+| 03 | 电感下铺铜涡流场（FEA） | `results/03-field-eddy-copper/` | ✅ **v3 真几何** | ⚠️ 参数为估值 |
 | 04 | 方法/过程/局限文档 | `docs/` | ✅ | — |
+
+### 最新结论（2026-09-24）
+
+- **DM EMI（含寄生）**：v1 的 +34.4dB 是**假象**（缺走线电感）；v2 **标称 +15.9dB / 悲观 +0.7dB**（几乎贴 CISPR 32 Class B @4.03MHz）。**主导寄生 = 走线/回路电感**。**π 滤波挡掉 ~58dB**。CM 尚未正式建模（很可能是更大风险）。
+- **场（真几何）**：板框 26.50×50.50mm，铜=板框−铺铜（占 81.2%）；|J|max≈2.9e7 A/m² @r≈4.7mm，径向单调衰减；>1e7 仅 0.073% 节点（无大面积斑点）。
 
 **方法**：`docs/01-simulation-method.md`　**过程/时间线**：`docs/02-simulation-process.md`　**局限**：`docs/04-known-issues-and-limits.md`
 
