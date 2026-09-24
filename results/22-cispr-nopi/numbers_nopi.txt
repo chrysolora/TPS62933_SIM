@@ -1,0 +1,37 @@
+================================================================================
+TPS62933 CONDUCTED CISPR 32 Class B -- WITH pi vs WITHOUT pi input filter
+================================================================================
+pi segment = L1 (1uH FXL0420-1R0-M) + PPHV_OUT_FILTER group (C73||C74=20uF + C72=100nF)
+  30uF bank (C17||C62||C63 on PPHV, BEFORE L1) is NOT in the pi segment -> kept in all variants
+(a) nopi_a = short L1 only  |  (b) nopi_b = L1 shorted + C73/C74/C72 removed
+Caliber = cispr_final: L_hot=2.70 nH real copper, C_p=2.416 pF real copper, tr=tf=10ns, CISPR32 B
+
+--- DM (real copper L_hot=2.70 nH) : 3 load cases x 3 variants ---
+case    variant                  Ipk[A]    |Zt|1  QP margin        AV margin       
+noload  with-pi                   0.220  9.4e-07  QP  +48.6 @ 3.22MHz  AV  +38.6 @ 3.22MHz
+noload  no-pi (a) L1 shorted      0.220  7.8e-04  QP   +1.0 @ 3.22MHz  AV   -9.0 @ 3.22MHz
+noload  no-pi (b) whole pi removed    0.220  7.5e-04  QP   -1.8 @ 3.22MHz  AV  -11.8 @ 3.22MHz
+half    with-pi                   1.500  9.4e-07  QP  +31.2 @ 4.03MHz  AV  +21.2 @ 4.03MHz
+half    no-pi (a) L1 shorted      1.500  7.8e-04  QP  -16.3 @ 4.03MHz  AV  -26.3 @ 4.03MHz
+half    no-pi (b) whole pi removed    1.500  7.5e-04  QP  -19.1 @ 4.03MHz  AV  -29.1 @ 4.03MHz
+full    with-pi                   3.000  9.4e-07  QP  +25.1 @ 4.03MHz  AV  +15.1 @ 4.03MHz
+full    no-pi (a) L1 shorted      3.000  7.8e-04  QP  -22.3 @ 4.03MHz  AV  -32.3 @ 4.03MHz
+full    no-pi (b) whole pi removed    3.000  7.5e-04  QP  -25.1 @ 4.03MHz  AV  -35.1 @ 4.03MHz
+   [pi, L_hot=4.44nH Grover] noload QP  +44.7 @ 3.22MHz  AV  +34.7 dB
+   [pi, L_hot=4.44nH Grover] half   QP  +27.3 @ 4.03MHz  AV  +17.3 dB
+   [pi, L_hot=4.44nH Grover] full   QP  +21.3 @ 4.03MHz  AV  +11.3 dB
+
+--- CM (C_p=2.416 pF real copper) : 3 load cases (pi-independent in this caliber) ---
+case      Vsw1[V]      Vcm1  QP margin           AV margin         
+noload      3.885      61.5  QP  -14.9 @ 2.42MHz  AV  -24.9 @ 2.42MHz 
+half       15.055      73.3  QP  -17.3 @ 0.81MHz  AV  -27.3 @ 0.81MHz (half NOT steady-state)
+full       13.036      72.0  QP  -16.0 @ 0.81MHz  AV  -26.0 @ 0.81MHz 
+  NOTE: pi-segment elements (L1 + caps) all return to on-board GND; the CM loop is
+        SW -> C_p(board<->earth) -> LISN(25ohm) -> cable, so no pi element lies in it
+        -> CM curve is IDENTICAL for pi / nopi_a / nopi_b in this caliber.
+
+--- VERIFY with-pi reproduces cispr_final/ (DM full +25.1/+15.1, CM full -16.0) ---
+  DM  full  QP +25.1  AV +15.1   (target +25.1 / +15.1)
+  CM  full  QP -16.0  AV -26.0   (target -16.0 / -26.0)
+
+Wrote fig_cispr_nopi_compare.png
