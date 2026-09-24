@@ -1,0 +1,14 @@
+==========================================================================
+TPS62933 CISPR 32 Class B -- SPLIT single-panel figures (no re-simulation)
+DM source : dm_recheck/dm_recheck.py prefix (read-only) | L_hot=2.70 nH real copper | full load Ipk=3A
+CM source : cm_redo/cm_redo_model.py (verbatim) | C_p=2.416 pF real copper | v(sw) from results_v2/E_*.txt
+==========================================================================
+DM full with pi                    QP  +25.1 @ 4.03MHz   AV  +15.1 @ 4.03MHz
+DM full no pi (a) L1 shorted       QP  -22.3 @ 4.03MHz   AV  -32.3 @ 4.03MHz
+DM full no pi (b) whole pi removed QP  -25.1 @ 4.03MHz   AV  -35.1 @ 4.03MHz
+CM noload   QP  -14.9 @ 2.42MHz   AV  -24.9 @ 2.42MHz
+CM half     QP  -17.3 @ 0.81MHz   AV  -27.3 @ 0.81MHz
+CM full     QP  -16.0 @ 0.81MHz   AV  -26.0 @ 0.81MHz
+pi-filter DM suppression (full load, at 4.03 MHz worst point):
+   emission(nopi_a) - emission(pi) = +47.5 dB  -> margin improves by +47.5 dB
+   emission(nopi_b) - emission(pi) = +50.3 dB  -> margin improves by +50.3 dB
