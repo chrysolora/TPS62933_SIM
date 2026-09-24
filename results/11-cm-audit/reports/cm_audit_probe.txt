@@ -1,0 +1,14 @@
+==============================================================================
+cm_audit probe -- CM margin vs COUPLING-CAP DEFINITION and VALUE
+==============================================================================
+  C=0.4107 pF | C_sw as extracted (SW<->board own GND plane, 1mm)       | worst-margin noload/half/full = +2.5 / -1.5 / -0.3 dB
+  C=0.3121 pF | SW<->board-plane, topcut                                | worst-margin noload/half/full = +4.9 / +0.8 / +2.1 dB
+  C=0.2021 pF | SW<->board-plane, dualcut                               | worst-margin noload/half/full = +8.6 / +4.6 / +5.9 dB
+  C=1.1900 pF | board<->earth via CISPR plane 10mm, eps0*A/d (A=1338mm2) | worst-margin noload/half/full = -6.8 / -10.8 / -9.5 dB
+  C=10.0000 pF | board<->earth, black-box baseline assumption            | worst-margin noload/half/full = -25.2 / -29.3 / -28.0 dB
+  C=0.0120 pF | SW<->earth direct through FR4+air to plane (eps0*A_sw/d) | worst-margin noload/half/full = +33.2 / +29.2 / +30.4 dB
+
+--- local-return shunting estimate (why SW<->board-plane current is NOT CM) ---
+  L_local= 2 nH  |Z_loc|@30MHz=0.38 ohm  |Z(board<->earth,1.19pF)|=4458 ohm  |Z_cable|=5.7 ohm   ->  only ~0.01% of the SW->plane displacement current can leave via earth
+  L_local= 5 nH  |Z_loc|@30MHz=0.94 ohm  |Z(board<->earth,1.19pF)|=4458 ohm  |Z_cable|=5.7 ohm   ->  only ~0.02% of the SW->plane displacement current can leave via earth
+  L_local=10 nH  |Z_loc|@30MHz=1.88 ohm  |Z(board<->earth,1.19pF)|=4458 ohm  |Z_cable|=5.7 ohm   ->  only ~0.04% of the SW->plane displacement current can leave via earth

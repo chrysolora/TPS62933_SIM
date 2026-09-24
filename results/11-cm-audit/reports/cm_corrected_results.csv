@@ -1,0 +1,13 @@
+# C_sw electrostatic FEM, user stack-up: 2-layer, outer Cu 0.030mm, core=1.43mm FR4, bottom Cu 0.030mm
+# geometry: SW shell(z=0) <-> bottom GND plane(z=-tb) [+ top coplanar GND strips 0.3mm clearance]
+# eps_r applied as z-function (MATC); tan_d ignored (electrostatic).
+case,tb_mm,epsr_slab,topgnd,C_pF
+fullcu,1.000,1.0,no,0.410572   # toolchain check: reproduces original 0.4107 pF
+fullcu,1.430,1.0,no,0.342737
+fullcu,1.430,4.3,no,1.110244
+fullcu,1.430,4.6,no,1.178970
+fullcu,1.430,1.0,yes,0.689485
+fullcu,1.430,4.3,yes,2.415968
+fullcu,1.430,4.6,yes,2.571897
+(topcut,1.430,1.0,no, >1.22  # NOT reproducible: clipped-SW geometry degenerates today (~270 nodes); orig gen_geo.py gives 1.44 pF)
+(dualcut,1.000,1.0,no,0.208125)  # reproduces original 0.2021 pF
