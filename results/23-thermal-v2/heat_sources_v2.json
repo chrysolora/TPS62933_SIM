@@ -1,0 +1,68 @@
+{
+ "total_W": {
+  "value": 5.0,
+  "level": "S",
+  "note": "controlling assumption 'total loss = 5 W'; sensitivity: light 0.79W / half 2.17W / full 5.0W"
+ },
+ "board_frame": {
+  "x_mm": 26.5,
+  "y_mm": 50.5,
+  "thickness_mm": 1.49,
+  "levels": "2",
+  "cu_outer_mm": 0.03,
+  "cov_top_pct": 81.2,
+  "level": "S/M",
+  "k_xy_W_mK": 13.367,
+  "k_z_W_mK": 0.3126,
+  "level_k": "S (homogenised from 2x30um Cu@81.2% + FR4)"
+ },
+ "sources": {
+  "U21": {
+   "power_W": 2.967,
+   "level": "D/E",
+   "split": {
+    "conduction_W": 0.486,
+    "cond_level": "D",
+    "sw_plus_other_W": 2.48097,
+    "level": "E",
+    "note": "conduction from Rds 76/32 mOhm (TI SLUSEA4D); remainder is loss-budget (E)"
+   },
+   "apply_volume": "SOT583 body 2.1x1.6x0.6 mm above board, k=9.25 W/mK -> Rth(die->board)=19.3 C/W (thetaJB, TI SLUSEA4D)",
+   "RthetaJB_C_W": 19.3,
+   "RthetaJB_level": "D"
+  },
+  "D1": {
+   "power_W": 1.19,
+   "level": "D",
+   "model": "P=Vf*Iin, Vf=0.70 V (SS36)",
+   "apply_volume": "SMA body 4.3x2.6x2.2 mm, k=6.56 -> Rth~30 C/W (E)",
+   "Rtheta_C_W": 30.0,
+   "Rtheta_level": "E"
+  },
+  "L2": {
+   "power_W": 0.765,
+   "level": "D",
+   "model": "P=Iout^2*DCR, DCR=85 mOhm",
+   "apply_volume": "ZEMS0650 body 6.5x6.5x3.0 mm, k=4.73 -> Rth~15 C/W (E)",
+   "Rtheta_C_W": 15.0,
+   "Rtheta_level": "E"
+  },
+  "L1": {
+   "power_W": 0.078,
+   "level": "D",
+   "model": "P=Iin^2*DCR, DCR=27 mOhm",
+   "apply_volume": "FXL0420 body 4.2x4.2x2.0 mm, k=5.67 -> Rth~20 C/W (E)",
+   "Rtheta_C_W": 20.0,
+   "Rtheta_level": "E"
+  }
+ },
+ "wire_fin": {
+  "n_wires": 2,
+  "area_mm2": 0.75,
+  "length_cm": 10,
+  "material": "Cu",
+  "G_fin_per_terminal_W_K": 0.002328,
+  "level": "E",
+  "basis": "adiabatic-fin Q/theta=sqrt(hPkA)*tanh(mL), h=10, d~0.98mm, mL~1.01"
+ }
+}

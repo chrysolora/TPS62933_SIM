@@ -1,0 +1,59 @@
+{
+ "mesh_levels": {
+  "L1": "lcmax2.5/lcmin0.6 mm",
+  "L2": "lcmax1.6/lcmin0.35 mm",
+  "L3": "lcmax1.0/lcmin0.18 mm"
+ },
+ "T_C": {
+  "L1": {
+   "Tboard_avg": 97.39,
+   "U21_max": 272.03,
+   "U21_avg": 261.27,
+   "D1_avg": 137.88,
+   "L2_avg": 126.95,
+   "L1_avg": 100.91
+  },
+  "L2": {
+   "Tboard_avg": 97.19,
+   "U21_max": 293.55,
+   "U21_avg": 281.36,
+   "D1_avg": 141.76,
+   "L2_avg": 127.19,
+   "L1_avg": 100.54
+  },
+  "L3": {
+   "Tboard_avg": 96.92,
+   "U21_max": 334.41,
+   "U21_avg": 323.94,
+   "D1_avg": 148.5,
+   "L2_avg": 127.82,
+   "L1_avg": 99.83
+  }
+ },
+ "pct_change_L1_L2": {
+  "Tboard_avg": -0.2,
+  "U21_max": 7.91,
+  "U21_avg": 7.69,
+  "D1_avg": 2.81,
+  "L2_avg": 0.19,
+  "L1_avg": -0.37
+ },
+ "pct_change_L2_L3": {
+  "Tboard_avg": -0.28,
+  "U21_max": 13.92,
+  "U21_avg": 15.13,
+  "D1_avg": 4.75,
+  "L2_avg": 0.49,
+  "L1_avg": -0.7
+ },
+ "criterion": "adjacent-level hotspot change < 2%",
+ "verdict": {
+  "Tboard_avg": "PASS (0.3%)",
+  "L2_avg": "PASS (0.5%)",
+  "L1_avg": "PASS (0.7%)",
+  "D1_avg": "FAIL (4.7%)",
+  "U21_max": "FAIL (13.9%)",
+  "U21_avg": "FAIL (15.1%)"
+ },
+ "note": "U21/D1 local peaks carry a residual singularity at the high-power-density package/board interface; board-scale field is converged. U21 absolute temp graded C."
+}
