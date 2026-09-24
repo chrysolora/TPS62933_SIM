@@ -13,6 +13,8 @@
 | `reports/REPORT_rad.md` | 报告（方法/归一化校验/数值/局限） |
 | `scripts/` | `board_b1.py`（B1 板级建模）`build_rad.py`（三版建模）`post_b1.py`/`post_compare.py`（出图） |
 
+> 🗑️ **图已删除（2026-09-24，用户要求：不具参考价值的删掉）**：本目录原 4 张图基于**旧前提**（无参考地平面/无电缆/无 CM 通路/无上游参数），已被 `results/09-radiated-b2/` 取代，故删除。目录保留仅作历史指针。
+
 **核心数值**：E@3m（±2 谐波包络）FullCopper 24.4/22.1/12.0 dBµV/m @30/100/300MHz；
 **TopCutout +2.2~2.5 dB，DualCutout +3.0~3.1 dB** → 电感下挖铜**恶化**辐射。
 
