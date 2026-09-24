@@ -1,0 +1,36 @@
+=== TPS62933 rad_conv : converged board radiation (DM, Ipk=4.3A @3.0A) ===
+normalisation H = E_norm/|if_tot| (physical hot-loop current); E_3m = H*|I(f)|/3
+geometry quantized to 0.25mm grid (kills micro-cells); FR4 1.50mm; limit CISPR32-B@3m
+
+--- E@3m [dBuV/m] vs mesh level (band-max +/-2 harmonics) ---
+  full  C0 (resb 1.50) : E30= 13.56  E100= 10.85  E300= 10.35
+  full  C1 (resb 1.00) : E30= 11.32  E100= 10.57  E300= 10.93
+  full  C2 (resb 0.75) : E30= 11.20  E100=  9.58  E300=  9.27
+  full  C3 (resb 0.50) : E30=  8.78  E100=  9.19  E300=  9.62
+  top   C2 (resb 0.75) : E30= 12.66  E100= 10.90  E300=  9.23
+  dual  C2 (resb 0.75) : E30=  9.06  E100=  9.87  E300=  9.19
+
+--- openEMS end-state energy & convergence flag (from run logs) ---
+
+--- convergence: |E30(level) - E30(next)| (fine pair is the acceptance test) ---
+  full  E30 levels = 13.56 11.32 11.20 8.78
+      |dE30| C0->C1 = 2.23 dB
+      |dE30| C1->C2 = 0.12 dB
+      |dE30| C2->C3 = 2.42 dB
+  top   only one level available
+  dual  only one level available
+
+--- resolvability: three-version spread vs mesh error band ---
+  comparison level = C2 ; global convergence band = 2.42 dB
+  @30 MHz : Full=11.20 Top=12.66 Dual=9.06  spread(Dual-Full)=-2.14  band=2.42 -> not resolvable (<noise)
+  @100 MHz : Full=9.58 Top=10.90 Dual=9.87  spread(Dual-Full)=+0.29  band=2.42 -> not resolvable (<noise)
+  @300 MHz : Full=9.27 Top=9.23 Dual=9.19  spread(Dual-Full)=-0.09  band=2.42 -> not resolvable (<noise)
+
+--- FIXED-WINDOW runs (NrTS=36000, EndCriteria disabled) : end-state energy ---
+  C0_full  -49.1 dB | C1_full -50.3 dB | C2_full -47.9 dB | C3_full -50.0 dB
+  C2_top   -47.6 dB | C2_dual -50.5 dB      (all << -30 dB requirement)
+
+--- normalisation check: E_norm/|if_tot| transfer, if_tot@30MHz ---
+  full C1=4.405e-15  C2=4.405e-15  C3=4.406e-15   (grid-independent to <0.1%)
+
+--- NOTE: earlier numbers from the first (end-criteria, truncated-window) sweep are SUPERSEDED.
