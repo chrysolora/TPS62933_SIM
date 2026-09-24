@@ -30,6 +30,7 @@ TI **TPS62933**（24V → 12V，最大 3A）降压电路的仿真成品结果，
 | 05 | **板级辐射发射**（openEMS FDTD）+ 三版对比 | `results/05-radiated/` | ✅ | ⚠️ 仅相对/热点 |
 | 06 | **三版总汇总（涡流 vs 辐射）** | `docs/06-multi-variant-summary.md` | ✅ | ⚠️ 务读 |
 | 06b | **辐射三维可视化**（STEP 板模+方向图+传播动画） | `results/06-rad-3d/` | ✅ | ⚠️ 形状可信/幅值不可信 |
+| 07 | **传导共模 (CM) — 真正瓶颈** | `results/07-conducted-cm/` | ✅ | ⚠️ C_p 估算;三工况超限 |
 | 07 | **仿真前提（强制）** | `docs/07-input-conditions-and-assumptions.md` | ✅ | 🔒 所有仿真必须遵守 |
 | 08 | 上游电源 LM50-20B24 数据 | `docs/08-upstream-supply-LM50-20B24.md` | ✅ | 手册抽取 |
 | — | 方法/过程/局限文档 | `docs/` | ✅ | — |

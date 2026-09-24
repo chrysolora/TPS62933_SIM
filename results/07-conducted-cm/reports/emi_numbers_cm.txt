@@ -1,0 +1,71 @@
+==============================================================================
+TPS62933 CONDUCTED COMMON-MODE (CM) model, 150 kHz - 30 MHz, CISPR 32
+==============================================================================
+
+--- measured SW edges from results_v2/E_*.txt (v(sw) col) ---
+  noload  tail-mean(Vsw)=11.24 V -> D_meas=0.468 ; max|dV/dt| (numerical) huge (dt->0 artefact)
+  half    tail-mean(Vsw)=6.70 V -> D_meas=0.279 ; max|dV/dt| (numerical) huge (dt->0 artefact)
+  full    tail-mean(Vsw)=6.74 V -> D_meas=0.281 ; max|dV/dt| (numerical) huge (dt->0 artefact)
+  NOTE: TPS62933P sim SW edges collapse to <=~1 sample (|dV/dt| unphysical) ->
+        the SIM edge is a maxstep=2n numerical artefact. Source uses the
+        prereq assumption tr=tf=5 ns (TI typical).
+
+--- CM port impedance Z_cm(f) = 25 ohm || (cable + upstream Y-cap path) ---
+  nominal: C_p=10 pF, C_y=2.2 nF (est), L_cable=30 nH (10 cm pair, est)
+   f=   0.150 MHz : Z_cm=  24.97 ohm (LISN-only 25.0)
+   f=   0.805 MHz : Z_cm=  24.08 ohm (LISN-only 25.0)
+   f=   5.000 MHz : Z_cm=  11.88 ohm (LISN-only 25.0)
+   f=  30.000 MHz : Z_cm=   3.21 ohm (LISN-only 25.0)
+
+--- V_sw harmonic content (basis of I_cm = 2*pi*f*C_p*V_sw) ---
+  case    D_meas  |Vsw1|meas  |Vsw1|trap(5ns)  |Vsw5|meas  |Vsw37|meas
+  noload  0.475       3.885 V       6.936 V       0.239 V     0.0783 V
+  half    0.282      15.055 V      15.278 V       2.375 V     0.2440 V
+  full    0.282      13.036 V      15.278 V       2.297 V     0.1917 V
+
+--- CM voltage on LISN, C_p=10 pF, PRIMARY = measured SW dv/dt spectrum ---
+  case   Vcm@805k[dBuV]  Vcm@4.03M  Vcm worst-margin[dB] @ pos        viol
+  noload       73.5          58.7       -25.2 @  1.610 MHz   11
+  half         85.3          78.5       -29.3 @  0.805 MHz   21
+  full         84.0          78.2       -28.0 @  0.805 MHz   18
+
+--- CM voltage, cross-check: idealized trapezoid tr=tf=5 ns (prereq), D=0.15/0.5/0.5 ---
+  noload Vcm@805k=  78.5 dBuV  worst-margin=  -27.3 dB @ 2.415 MHz
+  half   Vcm@805k=  85.4 dBuV  worst-margin=  -29.4 dB @ 0.805 MHz
+  full   Vcm@805k=  85.4 dBuV  worst-margin=  -29.4 dB @ 0.805 MHz
+
+--- C_p sensitivity (full load, measured SW spectrum, C_y=2.2 nF) ---
+   C_p=   2 pF : Vcm@805k=  70.0 dBuV  worst-margin=  -14.0 dB @ 0.805 MHz
+   C_p=  10 pF : Vcm@805k=  84.0 dBuV  worst-margin=  -28.0 dB @ 0.805 MHz
+   C_p=  50 pF : Vcm@805k=  98.0 dBuV  worst-margin=  -42.0 dB @ 0.805 MHz
+
+--- secondary sensitivities (full load, C_p=10 pF) ---
+   C_y=0.47 nF              Vcm@805k=  84.3 dBuV  worst-margin=  -28.3 dB @ 0.805 MHz
+   C_y=2.2 nF (nom)         Vcm@805k=  84.0 dBuV  worst-margin=  -28.0 dB @ 0.805 MHz
+   C_y=4.7 nF               Vcm@805k=  83.0 dBuV  worst-margin=  -27.0 dB @ 0.805 MHz
+   no Y-cap path (LISN only) Vcm@805k=  84.3 dBuV  worst-margin=  -28.3 dB @ 0.805 MHz
+   tr=tf sweep (C_p=10 pF, C_y nom):
+     tr=tf=   2 ns : worst-margin=  -29.4 dB @ 0.805 MHz (Vcm@805k=85.4)
+     tr=tf=   5 ns : worst-margin=  -29.4 dB @ 0.805 MHz (Vcm@805k=85.4)
+     tr=tf=  10 ns : worst-margin=  -29.4 dB @ 0.805 MHz (Vcm@805k=85.4)
+     tr=tf=  20 ns : worst-margin=  -29.4 dB @ 0.805 MHz (Vcm@805k=85.4)
+
+--- DM reference (ported emi_v3 geo-nominal) ---
+  noload DM V1@805k= -16.4 dBuV  worst-margin=  +63.6 dB @ 12.880 MHz
+  half   DM V1@805k=   7.2 dBuV  worst-margin=  +45.9 dB @ 4.025 MHz
+  full   DM V1@805k=  13.2 dBuV  worst-margin=  +39.9 dB @ 4.025 MHz
+  (cross-check: v3 published DM full-load V1=13.2 dBuV, margin +39.9 dB)
+
+--- CM + DM total on the worst line (worst-case phasor = Vcm + Vdm/2) ---
+  noload total@805k=  73.5 dBuV  worst-margin=  -25.2 dB @ 1.610 MHz  (CM-dominated)
+  half   total@805k=  85.3 dBuV  worst-margin=  -29.3 dB @ 0.805 MHz  (CM-dominated)
+  full   total@805k=  84.0 dBuV  worst-margin=  -28.0 dB @ 0.805 MHz  (CM-dominated)
+
+*** ANSWER (CM, C_p=10 pF nominal, measured SW dv/dt source):
+    full-load CM worst Class-B margin = -28.0 dB @ 0.81 MHz.
+    CM is a VIOLATION by ~28 dB; CM dominates DM by ~71 dB.
+    Combined CM+DM full-load worst margin = -28.0 dB @ 0.81 MHz. ***
+
+Wrote fig_emi_cm_cispr.png
+Wrote fig_emi_cm_dm_total.png
+Wrote fig_emi_cm_sensitivity.png
