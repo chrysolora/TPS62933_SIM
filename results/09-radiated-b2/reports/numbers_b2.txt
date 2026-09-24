@@ -1,0 +1,57 @@
+=== B2 numbers ===
+upstream LM50-20B24: fsw=65kHz, ripple 150mVpp(worst)/100mVpp(user)
+cable 10cm/0.75mm^2: L=105nH, R~0.05ohm ; Cy=2.2nF ; Cp=2/10/50pF
+30MHz = 461st harmonic of 65kHz
+
+--- E@3m [dBuV/m]  (DM+CM, 150mV, tr=50ns, Cp=10pF) ---
+  @30 MHz
+    0A    Full/Top/Dual:     1.2     3.9     3.6
+    1.5A  Full/Top/Dual:    15.1    17.8    17.6
+    3.0A  Full/Top/Dual:    21.2    23.9    23.6
+  @100 MHz
+    0A    Full/Top/Dual:    -1.8     0.7     0.4
+    1.5A  Full/Top/Dual:    12.2    14.7    14.4
+    3.0A  Full/Top/Dual:    18.2    20.7    20.4
+  @300 MHz
+    0A    Full/Top/Dual:   -13.1   -11.5   -11.6
+    1.5A  Full/Top/Dual:     0.9     2.5     2.4
+    3.0A  Full/Top/Dual:     6.9     8.5     8.4
+
+--- DM vs CM vs total, FullCopper, 3.0A (Cp=10pF,150mV,50ns) ---
+  @30 MHz  DM=   21.2  CM=  -68.9  tot=   21.2
+  @100 MHz  DM=   18.2  CM=  -71.4  tot=   18.2
+  @300 MHz  DM=    6.9  CM=  -88.9  tot=    6.9
+
+--- with / without upstream ripple (FullCopper,3.0A,150mV,50ns,10pF) ---
+  @30 MHz without=   21.2 with=   21.2 delta= 0.00 dB
+  @100 MHz without=   18.2 with=   18.2 delta= 0.00 dB
+  @300 MHz without=    6.9 with=    6.9 delta= 0.00 dB
+
+--- Cp sensitivity (FullCopper,3.0A,150mV,50ns) CM-only @3m ---
+  Cp=   2 pF :   -83.2   -89.1   -82.6
+  Cp=  10 pF :   -68.9   -71.4   -88.9
+  Cp=  50 pF :   -53.4   -61.6   -91.2
+
+--- upstream tr sensitivity (FullCopper,3.0A,150mV,Cp=10pF) CM-only ---
+  tr= 50 ns :   -68.9   -71.4   -88.9
+  tr=100 ns :   -76.2   -72.6   -88.3
+
+--- ripple amplitude 100 vs 150 mV (FullCopper,3.0A,50ns,10pF) CM-only ---
+  100 mV :   -72.5   -75.0   -92.4
+  150 mV :   -68.9   -71.4   -88.9
+
+--- ADDENDUM: analytic CM cross-check (short dipole l=0.1m, h=11.5mm over PEC) ---
+    E_3m = 2*eta*k*I*l/(4*pi*3m) ; I=Vharm/|Z_loop| ; k=2*pi*f/c
+    Cp=   2 pF, tr= 50 ns :  -45.6 -137.9  -81.9
+    Cp=   2 pF, tr=100 ns : -132.7 -131.9  -81.9
+    Cp=  10 pF, tr= 50 ns :  -31.4 -120.1  -88.5
+    Cp=  10 pF, tr=100 ns : -118.5 -114.1  -88.5
+    Cp=  50 pF, tr= 50 ns :  -16.2 -111.1  -90.8
+    Cp=  50 pF, tr=100 ns : -103.2 -105.1  -90.8
+    [FDTD-based CM (above) gives -69/-91/-93 dBuV/m -> FDTD CM ~40 dB lower than
+     the analytic bound; both are >=50 dB below DM, so CM is negligible either way.]
+
+--- ADDENDUM: PE vs no-PE (FullCopper, 3.0A, cm-excited) ---
+    if_cm no-PE=2.1780e-16  with-PE=2.1780e-16  ratio=1.0000
+    => tying the board to the plane changes CM current by <0.1%%: with the assumed
+       upstream edge rate the CM loop is NOT the bottleneck (Vharm~0 at HF).
