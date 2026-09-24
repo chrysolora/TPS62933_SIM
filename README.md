@@ -38,6 +38,7 @@ TI **TPS62933**（24V → 12V，最大 3A）降压电路的仿真成品结果，
 | 11 | **CM审计 + 辐射收敛复核** | `results/11-cm-audit/` | ⚠️ 审计结论 | 🔴 CM元件定义错;B2未收敛 |
 | 12 | **三版涡流损耗复核** | `results/12-eddy-loss/` | ⚠️ 结论可用(上界) | 🔴 绝对数不可用;损耗≪DCR |
 | 13 | **板级辐射（已收敛）· 三版差异判定** | `results/13-rad-converged/` | ✅ **取代 05/09** | ✅ 收敛;三版**不可分辨** |
+| 15 | **传导共模 CM（正确通路重做）** | `results/15-conducted-cm-redo/` | ✅ **取代 07** | ✅ 正确通路;满载超 Class B ~16dB |
 | 07 | **仿真前提（强制）** | `docs/07-input-conditions-and-assumptions.md` | ✅ | 🔒 所有仿真必须遵守 |
 | 08 | 上游电源 LM50-20B24 数据 | `docs/08-upstream-supply-LM50-20B24.md` | ✅ | 手册抽取 |
 | — | 方法/过程/局限文档 | `docs/` | ✅ | — |
