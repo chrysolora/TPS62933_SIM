@@ -29,6 +29,8 @@ TI **TPS62933**（24V → 12V，最大 3A）降压电路的仿真成品结果，
 | 04 | **三版铺铜涡流对比**（FullCopper/TopCutout/DualCutout） | `results/04-cut-variants/` | ✅ | ⚠️ 相对可信 |
 | 05 | **板级辐射发射**（openEMS FDTD）+ 三版对比 | `results/05-radiated/` | ✅ | ⚠️ 仅相对/热点 |
 | 06 | **三版总汇总（涡流 vs 辐射）** | `docs/06-multi-variant-summary.md` | ✅ | ⚠️ 务读 |
+| 07 | **仿真前提（强制）** | `docs/07-input-conditions-and-assumptions.md` | ✅ | 🔒 所有仿真必须遵守 |
+| 08 | 上游电源 LM50-20B24 数据 | `docs/08-upstream-supply-LM50-20B24.md` | ✅ | 手册抽取 |
 | — | 方法/过程/局限文档 | `docs/` | ✅ | — |
 
 ### 最新结论（2026-09-24）
