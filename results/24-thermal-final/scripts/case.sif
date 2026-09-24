@@ -1,0 +1,167 @@
+Header
+  CHECK KEYWORDS Warn
+  Mesh DB "." "mesh"
+  Include Path ""
+  Results Directory ""
+End
+
+Simulation
+  Max Output Level = 3
+  Coordinate System = Cartesian
+  Simulation Type = Steady state
+  Steady State Max Iterations = 40
+End
+
+Constants
+  Stefan Boltzmann = 5.67e-8
+End
+
+Material 1
+  Name = "BoardAniso"
+  Heat Conductivity(3) = Real 13.36711 13.36711 1.36120
+End
+
+Material 2
+  Name = "pkg_U21"
+  Heat Conductivity = Real 9.25241
+End
+
+Material 3
+  Name = "pkg_D1"
+  Heat Conductivity = Real 6.55933
+End
+
+Material 4
+  Name = "pkg_L2"
+  Heat Conductivity = Real 4.73373
+End
+
+Material 5
+  Name = "pkg_L1"
+  Heat Conductivity = Real 5.66893
+End
+
+Body Force 1
+  Name = "qsrc_U21"
+  Volumetric Heat Source = Real 4.8909e+08
+End
+
+Body Force 2
+  Name = "qsrc_D1"
+  Volumetric Heat Source = Real 4.8382e+07
+End
+
+Body Force 3
+  Name = "qsrc_L2"
+  Volumetric Heat Source = Real 6.0355e+06
+End
+
+Body Force 4
+  Name = "qsrc_L1"
+  Volumetric Heat Source = Real 2.2117e+06
+End
+
+Equation 1
+  Name = "Heat"
+  Active Solvers(1) = 1
+End
+
+Solver 1
+  Equation = Heat Equation
+  Procedure = "HeatSolve" "HeatSolver"
+  Stabilize = True
+  Linear System Solver = Iterative
+  Linear System Iterative Method = BiCGStab
+  Linear System Max Iterations = 1000
+  Linear System Convergence Tolerance = 1e-9
+  Nonlinear System Max Iterations = 1
+  Steady State Convergence Tolerance = 1e-8
+End
+
+Solver 2
+  Equation = Result Output
+  Procedure = "ResultOutputSolve" "ResultOutputSolver"
+  Output File Name = "case"
+  Output Format = Vtu
+  Exec Solver = Always
+End
+
+Solver 3
+  Equation = SaveScalars
+  Procedure = "SaveData" "SaveScalars"
+  Filename = "scalars.dat"
+  Variable 1 = Temperature
+  Operator 1 = max
+  Variable 2 = Temperature
+  Operator 2 = min
+  Exec Solver = Always
+End
+
+Body 1
+  Target Bodies(1) = 1
+  Name = "Board"
+  Equation = 1
+  Material = 1
+End
+
+Body 2
+  Target Bodies(1) = 2
+  Name = "U21"
+  Equation = 1
+  Material = 2
+  Body Force = 1
+End
+
+Body 3
+  Target Bodies(1) = 3
+  Name = "D1"
+  Equation = 1
+  Material = 3
+  Body Force = 2
+End
+
+Body 4
+  Target Bodies(1) = 4
+  Name = "L2"
+  Equation = 1
+  Material = 4
+  Body Force = 3
+End
+
+Body 5
+  Target Bodies(1) = 5
+  Name = "L1"
+  Equation = 1
+  Material = 5
+  Body Force = 4
+End
+
+Boundary Condition 1
+  Target Boundaries(1) = 1
+  Name = "Convection"
+  Heat Transfer Coefficient = Real 11.799801028862257
+  External Temperature = Real 298.15
+  Radiation = Idealized
+  Emissivity = Real 0.9
+  Radiation External Temperature = Real 298.15
+End
+
+Boundary Condition 2
+  Target Boundaries(1) = 2
+  Name = "TERM_IN"
+  Heat Transfer Coefficient = Real 172.1735
+  External Temperature = Real 298.15
+  Radiation = Idealized
+  Emissivity = Real 0.9
+  Radiation External Temperature = Real 298.15
+End
+
+Boundary Condition 3
+  Target Boundaries(1) = 3
+  Name = "TERM_OUT"
+  Heat Transfer Coefficient = Real 172.1735
+  External Temperature = Real 298.15
+  Radiation = Idealized
+  Emissivity = Real 0.9
+  Radiation External Temperature = Real 298.15
+End

@@ -1,0 +1,38 @@
+{
+  "case": "TPS62933F board thermal FINAL (step-3)",
+  "operating_point_full_load": {"Vin_V": 24.0, "Vout_V": 12.0, "Iout_A": 3.0, "fsw_kHz": 805, "Tamb_C": 25},
+  "items": [
+    {"device": "D1 (SS36 schottky)", "formula": "P = Vf * Iin",
+     "params": {"Vf_V": 0.70, "Iin_A": 1.70}, "P_W": 1.19, "source_level": "D",
+     "source": "SS36 datasheet Vf @ ~1.7A / high Tj (0.70V); Iin = Pout/(Vin*eta) at 92% -> 1.70A"},
+    {"device": "L2 (ZEMS0650-150M, 15 uH)", "formula": "P = Iout^2 * DCR",
+     "params": {"Iout_A": 3.0, "DCR_ohm": 0.085}, "P_W": 0.765, "source_level": "D",
+     "source": "LCSC C41415624 / manufacturer datasheet DCR = 85 mOhm (VERIFIED this run)"},
+    {"device": "L1 (FXL0420-1R0-M, 1 uH)", "formula": "P = Iin^2 * DCR",
+     "params": {"Iin_A": 1.70, "DCR_ohm": 0.027}, "P_W": 0.078, "source_level": "D",
+     "source": "LCSC C167203 / manufacturer datasheet DCR = 27 mOhm (VERIFIED this run)"},
+    {"device": "U21 conduction", "formula": "P = Iout^2 * (D*RdsHS + (1-D)*RdsLS)",
+     "params": {"Iout_A": 3.0, "D": 0.5, "RdsHS_ohm": 0.076, "RdsLS_ohm": 0.032}, "P_W": 0.486,
+     "source_level": "D", "source": "TI SLUSEA4D Rds(on) HS=76mOhm / LS=32mOhm"},
+    {"device": "U21 switching", "formula": "P = 0.5 * Vin * Iout * fsw * (tr+tf)  [+ Coss/gate-drive, E]",
+     "params": {"Vin_V": 24.0, "Iout_A": 3.0, "fsw_Hz": 805000, "tr_tf_s": 5.0e-9,
+                "analytic_W": 0.29, "nominal_W": 0.50}, "P_W": 0.50, "source_level": "E",
+     "source": "fsw=805kHz (D); tr=tf=5ns = TI-typical (E, not measured -> analytic 0.29W); nominal 0.50W includes Coss/gate-drive (E)",
+     "range_W_fullload": [0.29, 0.70]}
+  ],
+  "total_W": 3.019,
+  "efficiency_est": 0.923,
+  "U21_junction_model": {
+    "method": "(i) analytic nodal:  Tj = T_board@U21 + P_U21 * thetaJB",
+    "P_U21_W": 0.986, "thetaJB_C_per_W": 19.3, "thetaJB_source_level": "D",
+    "thetaJB_source": "TI SLUSEA4D, Thermal Information (thetaJB), D",
+    "T_board_at_U21_ref_C_full_load": 100.93,
+    "T_board_ref_definition": "board top-surface mean within 2.5 mm radius of U21 (grid-converged 0.8%)",
+    "Tj_best_C": 119.96, "Tj_conservative_C": 139.17
+  },
+  "notes": [
+    "NO residual / fudge term. v2 error corrected: U21 no longer carries a 2.48W 'switch+misc' residual.",
+    "Total loss = 3.02 W (eta ~92.3%), NOT the v2 value of 5 W.",
+    "DCR values 85/27 mOhm verified against manufacturer datasheets (both D). Note: results/REPORT.md had older estimates 50/35 mOhm (WRONG); superseded here."
+  ]
+}

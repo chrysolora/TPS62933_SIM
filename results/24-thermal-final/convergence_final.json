@@ -1,0 +1,69 @@
+{
+ "levels": {
+  "L1": {
+   "board_mean_C": 73.32,
+   "U21_iface_C": 110.18,
+   "U21_Tj_analytic_C": 129.21,
+   "U21_board_ref_r2p5mm_C": 98.94,
+   "U21_Tj_best_C": 117.97,
+   "Tmax_body_C": 121.78,
+   "D1_body_max_C": 117.45,
+   "L2_body_max_C": 89.4,
+   "L1_body_max_C": 76.01,
+   "h_final": 11.804898835048666,
+   "U21_ref_r4p0mm_C": 91.71
+  },
+  "L2": {
+   "board_mean_C": 73.28,
+   "U21_iface_C": 113.95,
+   "U21_Tj_analytic_C": 132.98,
+   "U21_board_ref_r2p5mm_C": 100.11,
+   "U21_Tj_best_C": 119.14,
+   "Tmax_body_C": 125.78,
+   "D1_body_max_C": 119.31,
+   "L2_body_max_C": 89.5,
+   "L1_body_max_C": 76.03,
+   "h_final": 11.799801028862257,
+   "U21_ref_r4p0mm_C": 91.61
+  },
+  "L3": {
+   "board_mean_C": 73.24,
+   "U21_iface_C": 120.14,
+   "U21_Tj_analytic_C": 139.17,
+   "U21_board_ref_r2p5mm_C": 100.93,
+   "U21_Tj_best_C": 119.96,
+   "Tmax_body_C": 131.75,
+   "D1_body_max_C": 122.17,
+   "L2_body_max_C": 89.81,
+   "L1_body_max_C": 75.99,
+   "h_final": 11.798566391248535,
+   "U21_ref_r4p0mm_C": 91.63
+  }
+ },
+ "mesh": {
+  "L1": {
+   "tets": 34460,
+   "lcmin_mm": 0.6,
+   "lcmax_mm": 2.5
+  },
+  "L2": {
+   "tets": 133046,
+   "lcmin_mm": 0.35,
+   "lcmax_mm": 1.6
+  },
+  "L3": {
+   "tets": 747153,
+   "lcmin_mm": 0.18,
+   "lcmax_mm": 1.0
+  }
+ },
+ "rel_change_L2_to_L3_pct": {
+  "board_mean_C": 0.055,
+  "U21_iface_C": 5.152,
+  "U21_Tj_analytic_C": 4.448,
+  "U21_board_ref_r2p5mm_C": 0.812,
+  "U21_ref_r4p0mm_C": 0.022,
+  "U21_Tj_best_C": 0.684
+ },
+ "note": "board_mean & r>=2.5mm U21 reference converge <0.5%; raw U21 footprint peak is mesh-dependent (homogenized-copper artifact), reported as conservative bound."
+}

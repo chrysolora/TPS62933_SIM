@@ -1,0 +1,22 @@
+{
+ "Ptot_W": 3.01903,
+ "Qout_W": 3.019,
+ "imbalance_pct": -0.0,
+ "detail": {
+  "1": {
+   "area_mm2": 3022.6,
+   "Qconv_W": 1.757,
+   "Qrad_W": 1.038
+  },
+  "2": {
+   "area_mm2": 14.5,
+   "Qconv_W": 0.094,
+   "Qrad_W": 0.004
+  },
+  "3": {
+   "area_mm2": 14.5,
+   "Qconv_W": 0.121,
+   "Qrad_W": 0.005
+  }
+ }
+}

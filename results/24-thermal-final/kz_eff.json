@@ -1,0 +1,53 @@
+{
+ "k_fr4_step1_W_mK": 0.3126,
+ "k_cu_W_mK": 385.0,
+ "N_vias": 166,
+ "A_board_m2": 0.00133825,
+ "hole_dia_mm": 0.3048,
+ "plating_t_source": "E (board plating thickness not specified anywhere; assumed)",
+ "formula": "k_z_eff=(1-phi)*k_fr4+phi*k_cu ; phi=N*pi*(ro^2-ri^2)/A_board",
+ "cases": {
+  "t15um": {
+   "t_um": 15,
+   "phi_pct": 0.1694,
+   "A_barrel_um2": 13656.503,
+   "k_z_eff_W_mK": 0.9643,
+   "ratio_vs_fr4": 3.085
+  },
+  "t20um": {
+   "t_um": 20,
+   "phi_pct": 0.222,
+   "A_barrel_um2": 17894.512,
+   "k_z_eff_W_mK": 1.1665,
+   "ratio_vs_fr4": 3.732
+  },
+  "t25um": {
+   "t_um": 25,
+   "phi_pct": 0.2726,
+   "A_barrel_um2": 21975.441,
+   "k_z_eff_W_mK": 1.3612,
+   "ratio_vs_fr4": 4.354
+  },
+  "t30um": {
+   "t_um": 30,
+   "phi_pct": 0.3213,
+   "A_barrel_um2": 25899.29,
+   "k_z_eff_W_mK": 1.5485,
+   "ratio_vs_fr4": 4.953
+  },
+  "t35um": {
+   "t_um": 35,
+   "phi_pct": 0.368,
+   "A_barrel_um2": 29666.059,
+   "k_z_eff_W_mK": 1.7282,
+   "ratio_vs_fr4": 5.528
+  }
+ },
+ "nominal_t_um": 25,
+ "k_z_eff_nominal_W_mK": 1.3612,
+ "range_t15_35_W_mK": [
+  0.9643,
+  1.7282
+ ],
+ "level": "E (plating thickness unknown); N/hole/board are S"
+}
