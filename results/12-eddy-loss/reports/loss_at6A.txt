@@ -1,0 +1,9 @@
+=== fullcu ===
+  top   P_jouleElmer=3.9413e-04 W  P_fromJ=3.1353e-04 W  Vcu=3.7664e-08 m^3 cells=30703
+  bot   P_jouleElmer=2.2229e-04 W  P_fromJ=1.5026e-04 W  Vcu=4.4942e-08 m^3 cells=32834
+=== topcut ===
+  top   P_jouleElmer=3.2502e-05 W  P_fromJ=2.4772e-05 W  Vcu=2.9673e-08 m^3 cells=25050
+  bot   P_jouleElmer=1.4405e-06 W  P_fromJ=1.0725e-06 W  Vcu=4.2295e-08 m^3 cells=31400
+=== dualcut ===
+  top   P_jouleElmer=5.5061e-05 W  P_fromJ=4.4431e-05 W  Vcu=3.2617e-08 m^3 cells=27068
+  bot   P_jouleElmer=2.2266e-05 W  P_fromJ=1.7950e-05 W  Vcu=4.1921e-08 m^3 cells=31668
