@@ -42,6 +42,7 @@ TI **TPS62933**（24V → 12V，最大 3A）降压电路的仿真成品结果，
 | 15 | **传导共模 CM（正确通路重做）** | `results/15-conducted-cm-redo/` | ✅ **取代 07** | ✅ 正确通路;满载超 Class B ~16dB |
 | 16 | **传导 DM 稳健性复核** | `results/16-dm-recheck/` | ⚠️ **削弱 02** | ⚠️ 边缘;AV 悲观包络已超 |
 | 17 | **传导 CM 修正（元件更正+真实 f_exit）** | `results/17-cm-fix/` | ✅ **取代 15** | ✅ 两路线均超 Class B(一般做法~16dB/含板内回流~4-7dB) |
+| 18 | **DM（本板真实铺铜几何）** | `results/18-dm-real-copper/` | ✅ **修正 16 的"边缘"** | ✅ **DM 稳过 Class B**(QP+21/AV+11) |
 | 07 | **仿真前提（强制）** | `docs/07-input-conditions-and-assumptions.md` | ✅ | 🔒 所有仿真必须遵守 |
 | 08 | 上游电源 LM50-20B24 数据 | `docs/08-upstream-supply-LM50-20B24.md` | ✅ | 手册抽取 |
 | — | 方法/过程/局限文档 | `docs/` | ✅ | — |

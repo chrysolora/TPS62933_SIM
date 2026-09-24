@@ -1,0 +1,27 @@
+============================================================================
+DM with THIS BOARD's REAL COPPER GEOMETRY  (TPS62933, CISPR 32 Class B)
+============================================================================
+Real copper (from pourSim.epru):
+  POUR1 24VIN (top): bbox 3.0 x 9.3 mm , area 27.8 mm^2  (wide POUR, not a thin trace)
+  POUR4 GND  (top): 31.1 x 52.8 mm  /  POUR6 GND (bot): 30.0 x 54.9 mm  (solid planes)
+  -> the VIN hot loop and the 30uF bank sit on the same wide 24VIN pour
+     whose return is the bottom GND plane at 1.43 mm.
+
+Inductance of the REAL 24VIN seg (l=9.3mm, w=3.0mm):
+   Grover strip (no return benefit, upper)  = 4.44 nH
+   microstrip over plane (w=3,h=1.43,er4.4) = 2.70 nH
+   => real hot-loop L ~ 2.7 - 4.4 nH   (model nominal used 8 nH ; pess 20 nH)
+   => real 30uF-bank seg similar -> ~ 1.2 - 4.4 nH  (model nominal 3 nH)
+
+=== margins with REAL geometry (vs CISPR32 Class B) ===
+  REAL copper: lhot=2.7,ltr=2.7nH    QP  +25.1 dB @ 4.03MHz | AV  +15.1 dB @ 4.03MHz
+  REAL copper: lhot=3.6,ltr=2.7nH    QP  +23.0 dB @ 4.03MHz | AV  +13.0 dB @ 4.03MHz
+  REAL copper: lhot=4.4 (conserv.)   QP  +21.3 dB @ 4.03MHz | AV  +11.3 dB @ 4.03MHz
+  [ref] model nominal 8/3 nH         QP  +15.9 dB @ 4.03MHz | AV   +5.9 dB @ 4.03MHz
+  [ref] geom worst 15/8 nH           QP   +3.5 dB @ 4.03MHz | AV   -6.5 dB @ 4.03MHz
+  [ref] model pessimistic 20/8       QP   +1.1 dB @ 4.03MHz | AV   -8.9 dB @ 4.03MHz
+
+=== verdict (real copper) ===
+ REAL copper (lhot=2.7nH): QP +25.1 dB, AV +15.1 dB -> PASS both
+ previous 'pessimistic envelope' used lhot=20nH = 7.4x the real-copper value -> that is the 'bad layout' overshoot.
+plot: /mnt/raid10/sim-work/tps62933/dm_real/fig_dm_real.png
