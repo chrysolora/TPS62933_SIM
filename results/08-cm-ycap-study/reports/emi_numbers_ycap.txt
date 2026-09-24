@@ -1,0 +1,71 @@
+================================================================================
+TPS62933 conducted CM model WITH board Y-cap to PE  (derived from emi_cm)
+150 kHz - 30 MHz, CISPR 32, three load cases
+================================================================================
+UNIQUE DIFFERENCE vs baseline: + one Y-cap branch  board-GND <-> PE/earth.
+
+--- SANITY (must reproduce baseline emi_cm): Cyl=0, C_p=10 pF ---
+  noload worst-margin =  -25.25 dB @ 1.610 MHz  (Vcm@805k=73.5 dBuV)
+  half   worst-margin =  -29.27 dB @ 0.805 MHz  (Vcm@805k=85.3 dBuV)
+  full   worst-margin =  -28.02 dB @ 0.805 MHz  (Vcm@805k=84.0 dBuV)
+  baseline reference (REPORT_emi_cm): full-load CM worst = -28.0 dB @ 0.81 MHz
+
+--- MAIN RESULT: C_y = 1 nF (2 kV, user-specified) ---
+  noload base-margin=-25.25 dB  ->  1nF margin=-24.23 dB   (delta +1.02 dB) @ 1.610 MHz
+         attenuation @0.805MHz =  0.34 dB ; @29.785MHz = -7.45 dB
+  half   base-margin=-29.27 dB  ->  1nF margin=-28.93 dB   (delta +0.34 dB) @ 0.805 MHz
+         attenuation @0.805MHz =  0.34 dB ; @29.785MHz = -7.45 dB
+  full   base-margin=-28.02 dB  ->  1nF margin=-27.68 dB   (delta +0.34 dB) @ 0.805 MHz
+         attenuation @0.805MHz =  0.34 dB ; @29.785MHz = -7.45 dB
+
+--- Z_Cy(f)=1/(2*pi*f*C_y) vs 25 ohm (why low freq is hard) ---
+   C_y=1 nF :
+     f=  0.150 MHz : Z_Cy=   1061.0 ohm   Z_Cy/25 =     42.4
+     f=  0.805 MHz : Z_Cy=    197.7 ohm   Z_Cy/25 =      7.9
+     f=  2.000 MHz : Z_Cy=     79.6 ohm   Z_Cy/25 =      3.2
+     f= 10.000 MHz : Z_Cy=     15.9 ohm   Z_Cy/25 =      0.6
+     f= 30.000 MHz : Z_Cy=      5.3 ohm   Z_Cy/25 =      0.2
+
+--- 1 nF attenuation by band (vs baseline), per case ---
+   noload  low 0.15-2 MHz: mean  0.68 dB  (max  1.02)   |  high 10-30 MHz: mean -1.00 dB (max  2.37)
+   half    low 0.15-2 MHz: mean  0.68 dB  (max  1.02)   |  high 10-30 MHz: mean -1.00 dB (max  2.37)
+   full    low 0.15-2 MHz: mean  0.68 dB  (max  1.02)   |  high 10-30 MHz: mean -1.00 dB (max  2.37)
+
+--- C_y sweep: worst Class-B margin per case ---
+   C_y[nF]     noload       half       full   le50Hz@230V[mA]
+        0.1      -25.15      -29.24      -27.99         0.01
+        1.0      -24.23      -28.93      -27.68         0.07
+        4.7      -20.35      -27.13      -25.88         0.34
+       10.0      -16.21      -24.30      -23.05         0.72
+       47.0       -4.51      -13.60      -12.35         3.40
+      100.0       +1.82       -7.34       -6.09         7.23
+   (margins in dB; negative = violation.  Baseline row = C_y=0.)
+
+--- minimum C_y to reach CISPR 32 Class B (margin >= 0), per case ---
+   (obtained by fine numeric scan; large C_y -> Z_Cy -> 0 -> shunt kills CM)
+   noload  C_y,min =     81.1 nF   (touch leakage @230V/50Hz =     5.9 mA)
+   half    C_y,min =    244.7 nF   (touch leakage @230V/50Hz =    17.7 mA)
+   full    C_y,min =    206.5 nF   (touch leakage @230V/50Hz =    14.9 mA)
+
+--- comparison: series CM choke, first-order (C_p as Norton impedance) ---
+   NOTE: the baseline uses an IDEAL CM current source (Z_Cp = inf).  A series
+   choke only reduces the current if C_p is given its Norton impedance
+   Z_Cp = 1/(2*pi*f*C_p):  I_eff = I_cm * |Z_Cp/(Z_Cp + Z_choke)|  (the small
+   ~25 ohm loop impedance is neglected).  Z_choke = 2*pi*f*L (ideal).
+   1 mH     choke  noload=-22.14  half=-28.99  full=-27.74
+   4.7 mH   choke  noload=-13.62  half=-25.38  full=-24.13
+   10 mH    choke  noload= -8.72  half=-20.49  full=-19.24
+   choke effectiveness vs frequency (1 mH): reduction of I_cm in dB:
+      f=  0.81 MHz : Z_Cp=  19770.8 ohm  Z_choke=   5058.0 ohm  ->  -0.28 dB
+      f=  2.00 MHz : Z_Cp=   7957.7 ohm  Z_choke=  12566.4 ohm  ->  -5.43 dB
+      f= 10.00 MHz : Z_Cp=   1591.5 ohm  Z_choke=  62831.9 ohm  -> -31.93 dB
+      f= 30.00 MHz : Z_Cp=    530.5 ohm  Z_choke= 188495.6 ohm  -> -51.01 dB
+   NOTE: a CM choke is SERIES impedance, and it competes against Z_Cp.  At
+   0.805 MHz Z_Cp is high (~20 kohm) vs a 1 mH choke (~5 kohm) -> tiny effect;
+   it only bites at high frequency where Z_Cp has fallen.  Opposite trend to
+   the shunt Y-cap.  A real choke also self-resonates (parasitic C) so the
+   >10 MHz figures are optimistic.
+
+--- "best C_y" (smallest scanned that passes ALL three cases) = 237.9 nF ---
+Wrote fig_emi_cm_ycap_compare.png
+Wrote fig_emi_cm_ycap_sweep.png
