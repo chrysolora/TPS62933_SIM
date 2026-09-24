@@ -12,6 +12,10 @@
 - `figures/fig_emi_cm_cispr.png` — **CM 电压 vs CISPR 32 B 限值（三工况）**（唯一保留图）
 - （CM+DM 合成图、C_p/tr 敏感性图已移除；数值见 `reports/emi_numbers_cm.txt` 与报告 §4/§5）
 
+## 🔁 更新（2026-09-24）
+本目录的**黑箱 C_p=10 pF** 已被 **[`results/10-cm-pcb-geometry/`](../10-cm-pcb-geometry/) 取代**（用真实铜皮几何 + Elmer 静电场算 C_sw ≈ 0.2–0.4 pF）。
+→ 本目录的"超限 25–29 dB"是**悲观上界**；按几何值约 **+28…+34 dB 改善**，FullCopper 满载**临界（−0.3dB）**、挖铜后转正。**结论引用请以 10 为准。**
+
 ## ⚠️ 重要局限：本传导 CM 模型**未结合 PCB 铜皮布局**
 - 本模型用**集总寄生电容 C_p（10 pF，估）**代表"板↔大地"耦合，**是黑箱耦合，不是真实铜皮几何**。
 - **三种铺铜方案（FullCopper/TopCutout/DualCutout）在本模型中无区别** —— 传导 CM 结果**不随铜皮变化**。

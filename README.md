@@ -33,6 +33,7 @@ TI **TPS62933**（24V → 12V，最大 3A）降压电路的仿真成品结果，
 | 07 | **传导共模 (CM) — 真正瓶颈** | `results/07-conducted-cm/` | ✅ | ⚠️ C_p 估算;三工况超限 |
 | 08 | **CM 治理研究：Y电容 vs 共模扼流圈** | `results/08-cm-ycap-study/` | ✅ | ⚠️ 假设方案;结论受C_p支配 |
 | 09 | **辐射 EMI (B2)：地平面+电缆+CM通路** | `results/09-radiated-b2/` | ✅ | ⚠️ 绝对幅值未标定;上游边沿假设 |
+| 10 | **传导 CM（结合铜皮几何）** | `results/10-cm-pcb-geometry/` | ✅ | ⚠️ 网格±10%;仅SW+底层地电极 |
 | 07 | **仿真前提（强制）** | `docs/07-input-conditions-and-assumptions.md` | ✅ | 🔒 所有仿真必须遵守 |
 | 08 | 上游电源 LM50-20B24 数据 | `docs/08-upstream-supply-LM50-20B24.md` | ✅ | 手册抽取 |
 | — | 方法/过程/局限文档 | `docs/` | ✅ | — |

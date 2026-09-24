@@ -1,0 +1,15 @@
+variant,d_m,Lc,mesh_msh,C_pF
+fullcu,0.01,0.0008,fullcu_d010,0.410343
+topcut,0.01,0.0008,topcut_d010,0.315278
+dualcut,0.01,0.0008,dualcut_d010,0.202557
+fullcu,0.10,0.0008,fullcu_d100,0.410728
+topcut,0.10,0.0008,topcut_d100,0.312098
+dualcut,0.10,0.0008,dualcut_d100,0.202101
+fullcu,0.40,0.0008,fullcu_d400,0.408756
+topcut,0.40,0.0008,topcut_d400,0.315577
+dualcut,0.40,0.0008,dualcut_d400,0.200212
+fullcu,0.10,0.0016,fullcu_d100_c,0.582016
+topcut,0.10,0.0016,topcut_d100_c,0.429286
+dualcut,0.10,0.0016,dualcut_d100_c,0.266985
+fullcu,0.10,0.0005,fullcu_d100_f,0.367923
+dualcut,0.10,0.0005,dualcut_d100_f,0.187278
