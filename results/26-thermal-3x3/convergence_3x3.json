@@ -1,0 +1,23 @@
+{
+ "fullcu": {
+  "rel_change_pct": {
+   "board_mean_C": 0.068,
+   "U21_board_ref_r2p5mm_C": 1.168,
+   "U21_Tj_best_C": 0.982
+  }
+ },
+ "topcut": {
+  "rel_change_pct": {
+   "board_mean_C": 0.123,
+   "U21_board_ref_r2p5mm_C": 1.2,
+   "U21_Tj_best_C": 1.01
+  }
+ },
+ "dualcut": {
+  "rel_change_pct": {
+   "board_mean_C": 0.205,
+   "U21_board_ref_r2p5mm_C": 1.166,
+   "U21_Tj_best_C": 0.983
+  }
+ }
+}

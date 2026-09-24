@@ -1,0 +1,46 @@
+{
+ "note": "Loss budget reused from thermal_final/make_case_final.py; scaled by load. No residual term.",
+ "formulas": {
+  "Iin": "Iin=12*Iout/(0.92*24)=Iout/1.84 (n_est=0.92,D)",
+  "D1": "P=Vf*Iin, Vf=0.70V (SS36 ds, D); sensitivity Vf=0.5V",
+  "L2": "P=Iout^2*DCR, DCR=0.085 ohm (D)",
+  "L1": "P=Iin^2*DCR, DCR=0.027 ohm (D)",
+  "U21_cond": "P=Iout^2*(0.5*0.076+0.5*0.032) (D, SLUSEA4D)",
+  "U21_sw": "P=1/2*24*Iout*805k*(tr+tf); tr+tf=10ns -> 0.29W; nominal 0.50W incl Coss/gate (E)"
+ },
+ "loads": {
+  "3.0A": {
+   "D1": 1.19,
+   "L2": 0.765,
+   "L1": 0.07803,
+   "U21_cond": 0.486,
+   "U21_sw": 0.5,
+   "U21_total": 0.986,
+   "total": 3.01903,
+   "Iin_A": 1.7,
+   "Iout_A": 3.0
+  },
+  "1.5A": {
+   "D1": 0.595,
+   "L2": 0.19125,
+   "L1": 0.01951,
+   "U21_cond": 0.1215,
+   "U21_sw": 0.25,
+   "U21_total": 0.3715,
+   "total": 1.17726,
+   "Iin_A": 0.85,
+   "Iout_A": 1.5
+  },
+  "0.6A": {
+   "D1": 0.238,
+   "L2": 0.0306,
+   "L1": 0.00312,
+   "U21_cond": 0.01944,
+   "U21_sw": 0.1,
+   "U21_total": 0.11944,
+   "total": 0.39116,
+   "Iin_A": 0.34,
+   "Iout_A": 0.6
+  }
+ }
+}
