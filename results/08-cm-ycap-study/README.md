@@ -9,6 +9,5 @@
 - **🚩 结构性提示**：本模型把 CM 源当**理想电流源**（源阻抗 = C_p ≈19.6 kΩ@0.81MHz）→ 回路上加任何元件都改不了电流 → 结论"只能降 C_p"。**真实共模滤波有效** ⇒ **C_p=10pF 假设很可能过大**。结论受 C_p 支配（见 `results/07-conducted-cm/README.md` 的 C_p 敏感性表）。
 
 ## 产物
-- `figures/fig_emi_cm_ycap_compare.png` — 基线 vs 1nF vs 最优 C_y（三工况 + 限值线）
-- `figures/fig_emi_cm_ycap_sweep.png` — 最差裕量 vs C_y（三工况）
-- `reports/REPORT_emi_cm_ycap.md`、`reports/emi_numbers_ycap.txt`
+- `reports/REPORT_emi_cm_ycap.md`、`reports/emi_numbers_ycap.txt`（图已按"只留一张 CM 图"的要求移除）
+- 状态：**用户暂缓**（"先不管了"）——结论留档，方案不采纳。
