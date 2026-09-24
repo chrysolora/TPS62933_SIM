@@ -1,0 +1,35 @@
+==============================================================================
+TPS62933 CONDUCTED CISPR 32 Class B -- UNIFIED DM + CM (official)
+==============================================================================
+DM model : dm_recheck/emi_model_v2_repro.py (read-only reuse)
+CM model : cm_redo/cm_redo_model.py  (read-only reuse)
+Real-copper L_hot (24VIN 3.0x9.3mm over GND plane 1.43mm):
+   microstrip-over-plane = 2.70 nH ; Grover strip = 4.44 nH  -> 2.7-4.4 nH
+
+--- DM (REAL copper geometry) : 3 load cases, Class B ---
+case      Ild     D    Ipk[A]    |Zt|1  QP margin               AV margin
+noload   0.02  0.15     0.220  9.4e-07  QP  +48.6 @ 3.22MHz  AV  +38.6 @ 3.22MHz
+half     1.50  0.50     1.500  9.4e-07  QP  +31.2 @ 4.03MHz  AV  +21.2 @ 4.03MHz
+full     3.00  0.50     3.000  9.4e-07  QP  +25.1 @ 4.03MHz  AV  +15.1 @ 4.03MHz
+   [L_hot=4.44nH Grover] noload QP  +44.7 @ 3.22MHz  AV  +34.7 dB
+   [L_hot=4.44nH Grover] half   QP  +27.3 @ 4.03MHz  AV  +17.3 dB
+   [L_hot=4.44nH Grover] full   QP  +21.3 @ 4.03MHz  AV  +11.3 dB
+
+--- CM (C_p=2.416 pF real copper, primary topology) : 3 load cases ---
+case      Vsw1[V]      Vcm1  QP margin               AV margin
+noload      3.885      61.5  QP  -14.9 @ 2.42MHz  AV  -24.9 @ 2.42MHz
+half       15.055      73.3  QP  -17.3 @ 0.81MHz  AV  -27.3 @ 0.81MHz (half NOT steady-state)
+full       13.036      72.0  QP  -16.0 @ 0.81MHz  AV  -26.0 @ 0.81MHz
+
+Grading: DM QP/AV margins = B (abs level rides on assumed tr=tf=10ns; L_hot now A);
+         CM QP/AV margins = B (lumped Vcm model); C_p = A; V_sw source = A.
+         Conclusion robust: DM passes (>=+11.3 dB even at conservative L), CM fails.
+
+--- L_field check (Elmer MagnetoDynamics2D, 2D cross-section) ---
+geometry: 24VIN seg l=9.3mm w=3.0mm t=0.030mm h=1.43mm over GND (Dirichlet image plane)
+I = J*Atr = 1.0e7 * 9.0e-8 = 0.9 A
+W'  Elmer CalcFields = 1.22374e-07 J/m
+W'  VTK independent  = 1.22969e-07 J/m   (0.5% agree)
+L'  = 2W'/I^2 = 0.3036 nH/mm  ->  L_field = 2.824 nH  (converged: 45mm/finer = 2.829 nH)
+microstrip formula = 2.70 nH (+4.6%) ; Grover strip = 4.44 nH
+VERDICT: within +-15% of 2.70 nH  ->  DM L_hot grade B -> A
