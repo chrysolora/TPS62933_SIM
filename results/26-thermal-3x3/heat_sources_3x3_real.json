@@ -1,0 +1,38 @@
+{
+ "note": "Loss budget identical to thermal_final/thermal_3x3 (no residual term). Only the keep-out GEOMETRY changed to real source polygons.",
+ "loads": {
+  "3.0A": {
+   "D1": 1.19,
+   "L2": 0.765,
+   "L1": 0.07803,
+   "U21_cond": 0.486,
+   "U21_sw": 0.5,
+   "U21_total": 0.986,
+   "total": 3.01903,
+   "Iin_A": 1.7,
+   "Iout_A": 3.0
+  },
+  "1.5A": {
+   "D1": 0.595,
+   "L2": 0.19125,
+   "L1": 0.01951,
+   "U21_cond": 0.1215,
+   "U21_sw": 0.25,
+   "U21_total": 0.3715,
+   "total": 1.17726,
+   "Iin_A": 0.85,
+   "Iout_A": 1.5
+  },
+  "0.6A": {
+   "D1": 0.238,
+   "L2": 0.0306,
+   "L1": 0.00312,
+   "U21_cond": 0.01944,
+   "U21_sw": 0.1,
+   "U21_total": 0.11944,
+   "total": 0.39116,
+   "Iin_A": 0.34,
+   "Iout_A": 0.6
+  }
+ }
+}
